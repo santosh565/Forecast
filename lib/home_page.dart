@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<WeatherForecastModel> forecastObject;
-  String _cityName = 'Pokhara';
+  String _cityName = 'Kathmandu';
 
   @override
   void initState() {
@@ -46,22 +46,29 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
 
-Widget textFieldView() {
-  return Container(
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Enter City Name',
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+  Widget textFieldView() {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Enter City Name',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            contentPadding: EdgeInsets.all(8),
           ),
-          contentPadding: EdgeInsets.all(8),
+          onSubmitted: (value) {
+            _cityName = value;
+            setState(() {
+              forecastObject =
+                  Network().getWeatherForecast(cityName: _cityName);
+            });
+          },
         ),
       ),
-    ),
-  );
+    );
+  }
 }
