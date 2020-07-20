@@ -10,28 +10,55 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<WeatherForecastModel> forecastObject;
-  String _cityName = 'Lisbon';
+  String _cityName = 'Kathmandu';
 
   @override
   void initState() {
     super.initState();
     forecastObject = Network().getWeatherForecast(cityName: _cityName);
-   forecastObject.then((value) => print(value.list[0].weather[0].main));
+/*    forecastObject.then((value) => print(value.list[0].weather[0].main));
+ */
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Forecast'),
-      ),
       body: SafeArea(
-        child: Container(
-          child: Center(
-            child: Text('hello'),
-          ),
+        child: ListView(
+          children: <Widget>[
+            textFieldView(),
+            FutureBuilder<WeatherForecastModel>(
+              future: forecastObject,
+              builder: (BuildContext context,
+                  AsyncSnapshot<WeatherForecastModel> snapshot) {
+                if (snapshot.hasData) {
+                  return Text('all good');
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+Widget textFieldView() {
+  return Container(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Enter City Name',
+          prefixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          contentPadding: EdgeInsets.all(8),
+        ),
+      ),
+    ),
+  );
 }
