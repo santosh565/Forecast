@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/network/network.dart';
+import 'package:weather_forecast/ui/mid_view.dart';
 
 import 'model/weather_forecast_model.dart';
 
@@ -10,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<WeatherForecastModel> forecastObject;
-  String _cityName = 'Kathmandu';
+  String _cityName = 'Pokhara';
 
   @override
   void initState() {
@@ -32,9 +33,11 @@ class _HomePageState extends State<HomePage> {
               builder: (BuildContext context,
                   AsyncSnapshot<WeatherForecastModel> snapshot) {
                 if (snapshot.hasData) {
-                  return Text('all good');
+                  return midView(snapshot);
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
             ),
