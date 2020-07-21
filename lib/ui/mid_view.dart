@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/model/weather_forecast_model.dart';
+import 'package:weather_forecast/util/weather_forecast_util.dart';
 
 Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
   var cityName = snapshot.data.city.name;
   var country = snapshot.data.city.country;
+  int unixTimeStamp = snapshot.data.list[0].dt;
   return Container(
     child: Padding(
       padding:  EdgeInsets.all(14.0),
@@ -18,6 +20,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
               fontSize: 18,
             ),
           ),
+          Text('${Util.getFormattedDate(DateTime.fromMillisecondsSinceEpoch(unixTimeStamp*1000),)}'),
         ],
       ),
     ),

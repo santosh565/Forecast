@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    forecastObject = Network().getWeatherForecast(cityName: _cityName);
+    forecastObject = getWeather(cityName: _cityName);
 /*    forecastObject.then((value) => print(value.list[0].weather[0].main));
  */
   }
@@ -63,12 +63,14 @@ class _HomePageState extends State<HomePage> {
           onSubmitted: (value) {
             _cityName = value;
             setState(() {
-              forecastObject =
-                  Network().getWeatherForecast(cityName: _cityName);
+              forecastObject = getWeather(cityName: _cityName);
             });
           },
         ),
       ),
     );
   }
+
+  Future<WeatherForecastModel> getWeather({String cityName}) =>
+      Network().getWeatherForecast(cityName: _cityName);
 }
