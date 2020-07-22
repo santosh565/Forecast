@@ -3,12 +3,14 @@ import 'package:weather_forecast/model/weather_forecast_model.dart';
 import 'package:weather_forecast/util/weather_forecast_util.dart';
 
 Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
-  var cityName = snapshot.data.city.name;
-  var country = snapshot.data.city.country;
-  int unixTimeStamp = snapshot.data.list[0].dt;
+  var jsonData = snapshot.data;
+  var cityName = jsonData.city.name;
+  var country = jsonData.city.country;
+  int unixTimeStamp = jsonData.list[0].dt;
+
   return Container(
     child: Padding(
-      padding:  EdgeInsets.all(14.0),
+      padding: EdgeInsets.all(14.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -20,7 +22,34 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
               fontSize: 18,
             ),
           ),
-          Text('${Util.getFormattedDate(DateTime.fromMillisecondsSinceEpoch(unixTimeStamp*1000),)}'),
+          Text(
+            '${Util.getFormattedDate(DateTime.fromMillisecondsSinceEpoch(unixTimeStamp * 1000))}',
+            style: TextStyle(fontSize: 15),
+          ),
+          SizedBox(height: 10),
+          Icon(
+            Icons.wb_sunny,
+            size: 150,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  '${jsonData.list[0].temp.day.toStringAsFixed(0)}°C ',
+                  style: TextStyle(fontSize: 25),
+                ),
+                Text(
+                  '${jsonData.list[0].weather[0].description.toUpperCase()}',
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     ),
