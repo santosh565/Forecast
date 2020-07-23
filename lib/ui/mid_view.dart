@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:weather_forecast/model/weather_forecast_model.dart';
+import 'package:weather_forecast/util/convert_icon.dart';
 import 'package:weather_forecast/util/weather_forecast_util.dart';
 
 Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
@@ -28,11 +29,15 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
             style: TextStyle(fontSize: 15),
           ),
           SizedBox(height: 10),
-          Icon(
-            FontAwesomeIcons.cloud,
-            size: 150,
-            color: Colors.pink,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: getWeatherIcon(
+              weatherCondition: jsonData.list[0].weather[0].main,
+              color: Colors.blue,
+              size: 150,
+            ),
           ),
+          
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 10,
@@ -60,8 +65,11 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].speed.toStringAsFixed(1)} km/h'),
-                    Icon(FontAwesomeIcons.wind,size: 20,color: Colors.brown,),
-                    
+                    Icon(
+                      FontAwesomeIcons.wind,
+                      size: 20,
+                      color: Colors.brown,
+                    ),
                   ],
                 ),
               ),
@@ -70,8 +78,11 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].humidity.toStringAsFixed(0)} %'),
-                    Icon(FontAwesomeIcons.solidGrinBeamSweat,size: 20,color: Colors.brown,),
-                    
+                    Icon(
+                      FontAwesomeIcons.solidGrinBeamSweat,
+                      size: 20,
+                      color: Colors.brown,
+                    ),
                   ],
                 ),
               ),
@@ -80,8 +91,11 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].temp.max.toStringAsFixed(0)}°C'),
-                      Icon(FontAwesomeIcons.temperatureHigh,size: 20,color: Colors.brown,),
-                      
+                    Icon(
+                      FontAwesomeIcons.temperatureHigh,
+                      size: 20,
+                      color: Colors.brown,
+                    ),
                   ],
                 ),
               ),
