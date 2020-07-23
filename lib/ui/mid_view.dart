@@ -33,7 +33,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
             padding: const EdgeInsets.all(8.0),
             child: getWeatherIcon(
               weatherCondition: jsonData.list[0].weather[0].main,
-              color: Colors.blue,
+              color: Colors.cyan,
               size: 150,
             ),
           ),
@@ -68,7 +68,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                     Icon(
                       FontAwesomeIcons.wind,
                       size: 20,
-                      color: Colors.brown,
+                      color: Colors.cyan,
                     ),
                   ],
                 ),
@@ -81,7 +81,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                     Icon(
                       FontAwesomeIcons.solidGrinBeamSweat,
                       size: 20,
-                      color: Colors.brown,
+                      color: Colors.cyan,
                     ),
                   ],
                 ),
@@ -94,7 +94,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                     Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 20,
-                      color: Colors.brown,
+                      color: Colors.cyan,
                     ),
                   ],
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/network/network.dart';
+import 'package:weather_forecast/ui/bottom_view.dart';
 import 'package:weather_forecast/ui/mid_view.dart';
 
 import 'model/weather_forecast_model.dart';
@@ -33,7 +34,11 @@ class _HomePageState extends State<HomePage> {
               builder: (BuildContext context,
                   AsyncSnapshot<WeatherForecastModel> snapshot) {
                 if (snapshot.hasData) {
-                  return midView(snapshot);
+                  return Column(children: <Widget>[
+                    midView(snapshot),
+                    bottomView(snapshot),
+                  ],);
+                  
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),
