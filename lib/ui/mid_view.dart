@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:weather_forecast/model/weather_forecast_model.dart';
 import 'package:weather_forecast/util/weather_forecast_util.dart';
 
@@ -28,8 +29,9 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
           ),
           SizedBox(height: 10),
           Icon(
-            Icons.wb_sunny,
+            FontAwesomeIcons.cloud,
             size: 150,
+            color: Colors.pink,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -58,7 +60,8 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].speed.toStringAsFixed(1)} km/h'),
-                    Icon(Icons.description,size: 20,color: Colors.brown,),
+                    Icon(FontAwesomeIcons.wind,size: 20,color: Colors.brown,),
+                    
                   ],
                 ),
               ),
@@ -67,7 +70,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].humidity.toStringAsFixed(0)} %'),
-                    Icon(Icons.hot_tub,size: 20,color: Colors.brown,),
+                    Icon(FontAwesomeIcons.solidGrinBeamSweat,size: 20,color: Colors.brown,),
                     
                   ],
                 ),
@@ -77,7 +80,8 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   children: <Widget>[
                     Text('${jsonData.list[0].temp.max.toStringAsFixed(0)}°C'),
-                      Icon(Icons.hotel,size: 20,color: Colors.brown,),
+                      Icon(FontAwesomeIcons.temperatureHigh,size: 20,color: Colors.brown,),
+                      
                   ],
                 ),
               ),
