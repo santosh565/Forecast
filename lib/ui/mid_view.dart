@@ -50,6 +50,39 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
               ],
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text('${jsonData.list[0].speed.toStringAsFixed(1)} km/h'),
+                    Icon(Icons.description,size: 20,color: Colors.brown,),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text('${jsonData.list[0].humidity.toStringAsFixed(0)} %'),
+                    Icon(Icons.hot_tub,size: 20,color: Colors.brown,),
+                    
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text('${jsonData.list[0].temp.max.toStringAsFixed(0)}°C'),
+                      Icon(Icons.hotel,size: 20,color: Colors.brown,),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     ),
